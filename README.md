@@ -15,6 +15,7 @@
 ## About The Project
 
 In this project we needed to create a crud app using node, the application needed to be able to do the following tasks:
+
 CRUD for users:
 - Create a user
 - Fetch a users (Read)
