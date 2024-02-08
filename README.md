@@ -45,3 +45,10 @@ Routes for tasks
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## CRON Scheduler 
+
+```sh
+  npm install npm@latest -g
+```
+
