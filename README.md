@@ -49,6 +49,57 @@ Routes for tasks
 ## CRON Scheduler 
 
 ```sh
-  npm install npm@latest -g
+  cron.schedule('* * * * *', async () =>{
+             console.log('Cron is running');
+             try {
+                 const completedTasks = await Tasks.find({ dateTime: { $lt: new Date() } })
+
+                 if(completedTasks.length > 0){
+                     console.log('Completed Tasks Found:');
+                    
+                     await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
+                    
+                     console.log(completedTasks);
+                     console.log("Status has been changed to done");
+                 } else{
+                     console.log('No task has been completed yet');
+                     console.log(completedTasks);
+                 }
+             } catch (error) {
+                 console.error(error);
+             }
+        })
 ```
+
+The above code is a cron job that will run at certain intervals, what the cron job does is it looks through the database collection called taskdatas which holds all the tasks and looks at the date field to see if the date less than the current date meaning its overdue (completed) and then log the task that meets the criteria and update the status field from pending to done.
+
+```sh
+const completedTasks = await Tasks.find({ dateTime: { $lt: new Date() } })
+```
+The above code looks for dates that are less than the current date and if it passes the check it will then be placed in a const called completedTasks. It uses mongoDB's find function to look through the database.
+
+```sh
+                  if(completedTasks.length > 0){
+                     console.log('Completed Tasks Found:');
+                    
+                     await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
+                    
+                     console.log(completedTasks);
+                     console.log("Status has been changed to done");
+                 } else{
+                     console.log('No task has been completed yet');
+                     console.log(completedTasks);
+                 }
+```
+The if statement above will run if it finds tasks that meets the needs of the completedTasks criteria. Suppose the if statement is true then the following will run:
+```sh
+await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
+```
+- The above code snippet will update each task's status to done that is stored in completedTasks it does so by using the $in method which selects each document in the mongoDB database and then runs a map function to set each task's status to done.
+
+
+
+
+
+
 
