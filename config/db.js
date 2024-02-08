@@ -9,7 +9,7 @@ Tasks
 <==================== Schedule Service Task  ======================> 
 
 Setup a scheduled job to check all tasks in the Database - those that have a status of "pending" and next_execute_date_time has passed - print it to the console.
-and update the task to "done".
+and update the task to "done". ✅
 
 */
 
@@ -25,10 +25,10 @@ const connectDB = async () => {
 
         //         if(completedTasks.length > 0){
         //             console.log('Completed Tasks Found:');
-        //             console.log(completedTasks);
-
+                    
         //             await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
-
+                    
+        //             console.log(completedTasks);
         //             console.log("Status has been changed to done");
         //         } else{
         //             console.log('No task has been completed yet');

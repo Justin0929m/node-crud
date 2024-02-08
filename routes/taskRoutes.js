@@ -5,7 +5,7 @@ const taskController = require('../controller/taskController')
 // CRUD Routes
 
 // Create Task
-router.post('/users/:_id/tasks', taskController.create)
+router.post('/users/:userID/tasks', taskController.create)
 
 // Read Tasks
 router.get('/users/:userID/tasks/:_id', taskController.find) // get task single task from specific user

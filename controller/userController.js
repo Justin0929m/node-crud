@@ -112,7 +112,7 @@ POST
     "last_name" : "Smith"
 }
 
-http://hostname/api/users
+http://hostname/api/users ✅
 
 
 <==================== Update user ======================>
@@ -123,16 +123,16 @@ PUT
      "last_name" : "Doe"
 }
 
-http://hostname/api/users/{id}
+http://hostname/api/users/{id} ✅
 
 
 <==================== List all users ======================>
 
-GET http://hostname/api/users
+GET http://hostname/api/users ✅
 
 
 <==================== Get User info ======================>
 
-GET http://hostname/api/users/{id}
+GET http://hostname/api/users/{id} ✅
 
 */

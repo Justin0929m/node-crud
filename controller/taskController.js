@@ -4,9 +4,11 @@ const Task = require('../model/tasks')
 
 exports.create = async (req, res) =>{
     try {
-        const userID = req.params._id
+        const {userID} = req.params
 
         const { name, description, dateTime, status } = req.body
+
+        console.log('Date Time From req.body: ', new Date(dateTime));
 
         const newTask = new Task({
             name: name,
@@ -91,9 +93,9 @@ exports.update = async (req, res) =>{
 
 exports.delete = async (req, res) =>{
     try {
-        const { userID, taskID } = req.params
+        const { userID, _id } = req.params
 
-        const task = await Task.deleteOne({ userID: userID, _id: taskID })
+        const task = await Task.deleteOne({ userID: userID, _id: _id })
 
         res.status(200).json({
             message: 'Task has been deleted',
@@ -118,7 +120,7 @@ POST
     "date_time" : "2016-05-25 14:25:00"
 }
 
-http://hostname/api/users/{user_id}/tasks
+http://hostname/api/users/{user_id}/tasks ✅
 
 <==================== Update Task ======================>
 
@@ -127,21 +129,21 @@ PUT
     "name":"My updated task"
 }
 
-http://hostname/api/users/{user_id}/tasks/{task_id}
+http://hostname/api/users/{user_id}/tasks/{task_id} ✅
 
 
 <==================== Delete Task ======================>
 
-DELETE http://hostname/api/users/{user_id}/tasks/{task_id}
+DELETE http://hostname/api/users/{user_id}/tasks/{task_id} ✅
 
 
 <==================== Get Task Info ======================>
 
-GET http://hostname/api/users/{user_id}/tasks/{task_id}
+GET http://hostname/api/users/{user_id}/tasks/{task_id} ✅
 
 
 <==================== List all tasks for a user ======================>
 
-GET http://hostname/api/users/{user_id}/tasks
+GET http://hostname/api/users/{user_id}/tasks ✅
 
 */
