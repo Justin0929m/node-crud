@@ -10,10 +10,12 @@ exports.create = async (req, res) =>{
 
         console.log('Date Time From req.body: ', new Date(dateTime));
 
+        // const date = new Date(dateTime).toString()
+
         const newTask = new Task({
             name: name,
             description: description,
-            dateTime: new Date(dateTime),
+            dateTime: dateTime,
             userID: userID,
             status: status
         })
