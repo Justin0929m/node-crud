@@ -18,26 +18,27 @@ const connectDB = async () => {
         const dbUrl = 'mongodb://localhost:27017/users'
         const connection = await mongoose.connect(dbUrl)
 
-        cron.schedule('* * * * *', async () =>{
-            console.log('Cron is running');
-            try {
-                const completedTasks = await Tasks.find({ dateTime: { $lt: new Date() } })
+        // cron.schedule('* * * * *', async () =>{
+        //     console.log('Cron is running');
+        //     try {
+        //         const completedTasks = await Tasks.find({ dateTime: { $lt: new Date().toString() } })
 
-                if(completedTasks.length > 0){
+        //         if(completedTasks.length > 0){
                     
-                    await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
+        //             await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
                     
-                    console.log('Completed Tasks Found:');
-                    console.log(completedTasks);
-                    console.log("Status has been changed to done");
-                } else{
-                    console.log('No task has been completed yet');
-                    console.log(completedTasks);
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        })
+        //             console.log('< ================== Completed Tasks Found ======================= >');
+        //             console.log(' ');
+        //             console.log('Tasks Found: ', completedTasks);
+        //             console.log(' ');
+        //             console.log('< ================== Status has been updated to done ============= >');
+        //         } else{
+        //             console.log('No task has been completed yet');
+        //         }
+        //     } catch (error) {
+        //         console.error(error);
+        //     }
+        // })
 
         console.log('connected!');
         return connection

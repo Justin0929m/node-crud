@@ -8,14 +8,12 @@ exports.create = async (req, res) =>{
 
         const { name, description, dateTime, status } = req.body
 
-        console.log('Date Time From req.body: ', new Date(dateTime));
-
-        // const date = new Date(dateTime).toString()
+        const date = new Date(dateTime).toString()
 
         const newTask = new Task({
             name: name,
             description: description,
-            dateTime: dateTime,
+            dateTime: date,
             userID: userID,
             status: status
         })
