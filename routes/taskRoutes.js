@@ -10,7 +10,7 @@ router.post('/users/:userID/tasks', taskController.create)
 
 // Read Tasks - http://hostname/api/users/{user_id}/tasks/{task_id} / http://hostname/api/users/{user_id}/tasks
 
-router.get('/users/:userID/tasks/:_id', taskController.find) // get task single task from specific user
+router.get('/users/:userID/tasks/:_id', taskController.find) // get single task from specific user
 router.get('/users/:userID/tasks', taskController.findAll) // get all users tasks
 
 // Update Task - http://hostname/api/users/{user_id}/tasks/{task_id}

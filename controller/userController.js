@@ -6,6 +6,14 @@ exports.create = async (req, res) =>{
     try {
         const { username, firstName, lastName } = req.body
 
+        const existingUser = await User.findOne({ username: username })
+
+        if(existingUser){
+            return res.status(400).json({
+                message: 'Username already exists'
+            })
+        }
+
         const newUser = new User({
             username: username,
             firstName: firstName,

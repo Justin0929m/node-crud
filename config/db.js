@@ -24,7 +24,7 @@ const connectDB = async () => {
         //         const completedTasks = await Tasks.find({ dateTime: { $lt: new Date().toString() } })
 
         //         if(completedTasks.length > 0){
-                    
+
         //             await Tasks.updateMany({ _id: { $in: completedTasks.map(task => task._id) }}, { $set: {status: 'done'}})
                     
         //             console.log('< ================== Completed Tasks Found ======================= >');

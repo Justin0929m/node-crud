@@ -10,6 +10,15 @@ exports.create = async (req, res) =>{
 
         const date = new Date(dateTime).toString()
 
+        const existingName = await Task.findOne({ name: name })
+        const existingDesc = await Task.findOne({ description: description })
+
+        if(existingName || existingDesc){
+            return res.status(400).json({
+                message: 'This task already exists'
+            })
+        }
+
         const newTask = new Task({
             name: name,
             description: description,
